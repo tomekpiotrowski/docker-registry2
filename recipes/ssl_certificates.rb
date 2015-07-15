@@ -8,6 +8,13 @@
 # Apache License, Version 2.0
 #
 
+directory node['docker_registry2']['image_dir'] do
+  owner 'root'
+  group 'root'
+  mode 00755
+  action :create
+end
+
 %w(
  /root/certs /usr/local/share/ca-certificates/
  /usr/local/share/ca-certificates/docker-dev-cert).each do |x|
