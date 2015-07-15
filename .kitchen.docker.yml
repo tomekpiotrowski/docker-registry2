@@ -23,3 +23,8 @@ suites:
       - recipe[apt::default]
       - recipe[docker-registry2::default]
     attributes:
+        {docker_registry2:
+                {username: 'mydocker',
+                 password: 'dockerpasswd',
+                 domain_name: 'www.testdocker.com'
+                }}

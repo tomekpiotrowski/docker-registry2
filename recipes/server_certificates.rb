@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Cookbook Name:: docker-registry2
-# Recipe:: ssl_certificates
+# Recipe:: server_certificates
 #
 # Copyright 2015, http://DennyZhang.com
 #
@@ -44,16 +44,4 @@ end
     owner 'root'
     group 'root'
   end
-end
-
-cookbook_file '/usr/local/share/ca-certificates/docker-dev-cert/devdockerCA.crt' do
-  source 'devdockerCA.crt'
-  owner 'root'
-  group 'root'
-  notifies :run, 'execute[update-ca-certificates]', :delayed
-end
-
-execute 'update-ca-certificates' do
-  command 'update-ca-certificates'
-  action :nothing
 end

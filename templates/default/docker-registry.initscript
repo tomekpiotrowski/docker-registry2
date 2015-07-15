@@ -26,8 +26,7 @@ if [ -f /etc/sysconfig/network ]; then source /etc/sysconfig/network; fi
 #################################################################################
 # TODO
 SERVICE_NAME="docker-registry"
-SERVICE_VERSION=$docker-registry_version
-CHECK_PID_RUNNING=$(ps ax | grep 'java' | grep -e gunicorn.*access-logfile | grep -v grep | sed 's/^\s*\([0-9]*\)\s.*/\1/')
+CHECK_PID_RUNNING=$(ps ax | grep -e gunicorn.*access-logfile | grep -v grep | sed 's/^\s*\([0-9]*\)\s.*/\1/')
 MONITOR_TCP_PORT=5000
 #################################################################################
 PIDFILE="/usr/local/var/run/${SERVICE_NAME}.pid"
@@ -120,10 +119,10 @@ status() {
     # RUNNING
     if [[ $pid && -d "/proc/$pid" ]]; then
         if lsof -i tcp:$MONITOR_TCP_PORT | grep -i listen 2>/dev/null 1>2; then
-            echo -e " * \033[1;37;46m${SERVICE_NAME} $SERVICE_VERSION running with PID $pid\033[0m"
+            echo -e " * \033[1;37;46m${SERVICE_NAME} running with PID $pid\033[0m"
             return 0
         else
-            echo -e " * \033[1;37;46m${SERVICE_NAME} $SERVICE_VERSION running with problem (PID $pid)\033[0m"
+            echo -e " * \033[1;37;46m${SERVICE_NAME} running with problem (PID $pid)\033[0m"
             exit 1
         fi
     fi
