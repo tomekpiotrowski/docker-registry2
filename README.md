@@ -1,2 +1,3 @@
-# docker-registry2
-Chef Cookbook to setup chef docker registry
+docker-registry2 Cookbook
+================
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04

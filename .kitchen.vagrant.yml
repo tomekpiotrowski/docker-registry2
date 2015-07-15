@@ -1,0 +1,20 @@
+---
+driver:
+  name: vagrant
+driver_config:
+  use_sudo: false
+  require_chef_omnibus: 12.0.3
+  #provision_command: "curl -L https://www.opscode.com/chef/install.sh | bash"
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[apt::default]
+      - recipe[docker-registry2::default]
+    attributes:
