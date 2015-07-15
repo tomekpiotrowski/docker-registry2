@@ -47,6 +47,24 @@ template '/etc/nginx/sites-enabled/docker-registry-vhost' do
   notifies :restart, 'service[nginx]', :delayed
 end
 
-# TODO: start service
-# gunicorn --access-logfile - --debug -k gevent -b 0.0.0.0:5000 -w 1 docker_registry.wsgi:application
-# gunicorn --access-logfile /var/log/docker-registry/access.log --error-logfile /var/log/docker-registry/server.log -k gevent --max-requests 100 --graceful-timeout 3600 -t 3600 -b localhost:5000 -w 8 docker_registry.wsgi:application
+directory '/var/log/docker-registry' do
+  owner 'root'
+  group 'root'
+  mode 00755
+  action :create
+end
+
+service 'nginx' do
+  supports status: true
+  action [:enable, :start]
+end
+
+template '/etc/init.d/docker-registry' do
+  source 'docker-registry.initscript'
+  notifies :restart, 'service[docker-registry]', :delayed
+end
+
+service 'docker-registry' do
+  supports status: true
+  action [:enable, :start]
+end
