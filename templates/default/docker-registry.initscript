@@ -29,7 +29,7 @@ SERVICE_NAME="docker-registry"
 CHECK_PID_RUNNING=$(ps ax | grep -e gunicorn.*access-logfile | grep -v grep | sed 's/^\s*\([0-9]*\)\s.*/\1/')
 MONITOR_TCP_PORT=5000
 #################################################################################
-PIDFILE="/usr/local/var/run/${SERVICE_NAME}.pid"
+PIDFILE="/var/run/${SERVICE_NAME}.pid"
 # TODO
 #SERVICE_START_COMMAND="start-stop-daemon --start --quiet --make-pidfile --pidfile $PIDFILE --background -d /opt/docker-registry --startas /bin/bash -- -c \"exec /usr/bin/java -jar /opt/docker-registry/app-1.0.jar server /opt/docker-registry/config/docker-registry.yml >> /opt/docker-registry/logs/docker-registry_initscript.log 2>&1\""
 MAX_START_TIMEOUT=100

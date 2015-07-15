@@ -61,6 +61,7 @@ end
 
 template '/etc/init.d/docker-registry' do
   source 'docker-registry.initscript'
+  mode 00755
   notifies :restart, 'service[docker-registry]', :delayed
 end
 
