@@ -17,7 +17,6 @@ end
 
 %w(
  /root/certs /usr/local/share/ca-certificates/
- /etc/ssl/certs/docker-registry
  /usr/local/share/ca-certificates/docker-dev-cert).each do |x|
   directory x do
     owner 'root'
@@ -38,10 +37,14 @@ end
   end
 end
 
-%w(dev-docker-registry.com.crt dev-docker-registry.com.key).each do |x|
-  cookbook_file "/etc/ssl/certs/docker-registry/#{x}" do
-    source x
-    owner 'root'
-    group 'root'
-  end
+cookbook_file '/etc/ssl/certs/docker-registry/docker-registry' do
+  source 'dev-docker-registry.com.crt'
+  owner 'root'
+  group 'root'
+end
+
+cookbook_file '/etc/ssl/private/docker-registry' do
+  source 'dev-docker-registry.com.key'
+  owner 'root'
+  group 'root'
 end
