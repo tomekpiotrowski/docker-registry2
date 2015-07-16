@@ -1,5 +1,6 @@
 # Encoding: utf-8
 require 'serverspec'
+require 'json'
 
 # Required by serverspec
 set :backend, :exec

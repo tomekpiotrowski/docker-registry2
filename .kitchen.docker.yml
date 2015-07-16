@@ -2,17 +2,24 @@
 driver:
   name: docker
 driver_config:
+  http_proxy: <%= ENV.fetch('http_proxy', "http://172.17.42.1:3128") %>
+  https_proxy: <%= ENV.fetch('https_proxy', "https://172.17.42.1:3128") %>
+  instance_name: <%= ENV.fetch('INSTANCE_NAME', "backup-auth") %>
   use_sudo: false
-  socket: tcp://192.168.59.103:2376
-  require_chef_omnibus: 12.0.3
-  http_proxy: http://192.168.1.167:3128
-  https_proxy: http://192.168.1.167:3128
-  #provision_command: "curl -L https://www.opscode.com/chef/install.sh | bash"
+  privileged: true
+  remove_images: false
+  image: denny/osc:latest
+  tls_verify: true
+  tls_cacert: /Users/mac/Dropbox/private_data/project/docker/docker_tls_oscgc/ca.pem
+  tls_cert: /Users/mac/Dropbox/private_data/project/docker/docker_tls_oscgc/cert.pem
+  tls_key: /Users/mac/Dropbox/private_data/project/docker/docker_tls_oscgc/key.pem
+  socket: tcp://192.168.1.185:4243
+  provision_command: "curl -L https://raw.githubusercontent.com/DennyZhang/data/master/denny_chef_provision.sh | bash -e"
   forward:
-  - 8080:80
+  - 8084:8080
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
   - name: ubuntu-14.04
