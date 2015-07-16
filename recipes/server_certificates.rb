@@ -37,7 +37,7 @@ end
   end
 end
 
-cookbook_file '/etc/ssl/certs/docker-registry/docker-registry' do
+cookbook_file '/etc/ssl/certs/docker-registry' do
   source 'dev-docker-registry.com.crt'
   owner 'root'
   group 'root'
