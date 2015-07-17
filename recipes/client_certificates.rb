@@ -17,6 +17,17 @@ execute "Change /etc/hosts: 127.0.0.1 #{domain_name}" do
   not_if "grep '^127.0.0.1 #{domain_name}' /etc/hosts"
 end
 
+%w(
+ /usr/local/share/ca-certificates/
+ /usr/local/share/ca-certificates/docker-dev-cert).each do |x|
+  directory x do
+    owner 'root'
+    group 'root'
+    mode 00755
+    action :create
+  end
+end
+
 cookbook_file '/usr/local/share/ca-certificates/docker-dev-cert/devdockerCA.crt' do
   source 'devdockerCA.crt'
   owner 'root'

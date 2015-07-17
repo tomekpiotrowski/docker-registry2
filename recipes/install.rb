@@ -9,7 +9,7 @@
 #
 %w(
  build-essential python-dev libevent-dev python-pip liblzma-dev
- openssl libssl-dev swig nginx apache2-utils).each do |x|
+ openssl libssl-dev swig lsof nginx apache2-utils).each do |x|
   package x do
     action :install
   end

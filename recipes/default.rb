@@ -8,6 +8,6 @@
 # Apache License, Version 2.0
 #
 
-include_recipe 'docker-registry2::server_certificates'
 include_recipe 'docker-registry2::client_certificates'
+include_recipe 'docker-registry2::server_certificates'
 include_recipe 'docker-registry2::install'
