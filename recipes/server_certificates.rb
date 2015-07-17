@@ -8,7 +8,7 @@
 # Apache License, Version 2.0
 #
 
-%w(/root/certs directory node['docker_registry2']['image_dir']).each do |x|
+["/root/certs", node['docker_registry2']['image_dir']].each do |x|
   directory x do
     owner 'root'
     group 'root'
