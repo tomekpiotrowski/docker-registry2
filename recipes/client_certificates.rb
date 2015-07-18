@@ -10,11 +10,12 @@
 
 # change /etc/hosts
 domain_name = node['docker_registry2']['domain_name']
+server_ip = node['docker_registry2']['server_ip']
 
-execute "Change /etc/hosts: 127.0.0.1 #{domain_name}" do
-  command "echo 127.0.0.1 #{domain_name} >> /etc/hosts"
+execute "Change /etc/hosts: #{server_ip} #{domain_name}" do
+  command "echo #{server_ip} #{domain_name} >> /etc/hosts"
   action :run
-  not_if "grep '^127.0.0.1 #{domain_name}' /etc/hosts"
+  not_if "grep '^#{server_ip} #{domain_name}' /etc/hosts"
 end
 
 %w(

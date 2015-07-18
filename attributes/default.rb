@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+default['docker_registry2']['server_ip'] = '127.0.0.1' # customize this
+
 default['docker_registry2']['domain_name'] = 'www.testdocker.com'
 default['docker_registry2']['username'] = 'mydocker'
 default['docker_registry2']['password'] = 'dockerpasswd'
