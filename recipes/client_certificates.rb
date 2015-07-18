@@ -36,6 +36,6 @@ cookbook_file '/usr/local/share/ca-certificates/docker-dev-cert/devdockerCA.crt'
 end
 
 execute 'update-ca-certificates' do
-  command 'update-ca-certificates'
+  command 'update-ca-certificates --fresh'
   action :nothing
 end

@@ -37,7 +37,8 @@ username = chef_data.fetch('docker_registry2').fetch('username')
 password = chef_data.fetch('docker_registry2').fetch('password')
 domain_name = chef_data.fetch('docker_registry2').fetch('domain_name')
 
-describe command('curl --noproxy 127.0.0.1 -I https://' + username + ':' + password + \
-                 '@' + domain_name + ':8080 2>/dev/null | grep HTTP') do
-  its(:stdout) { should match /HTTP\/1.1 401 Unauthorized/ }
+describe command('curl --noproxy 127.0.0.1,' + domain_name + \
+                 ' https://' + username + ':' + password + \
+                 '@' + domain_name + ':8080') do
+  its(:stdout) { should match /docker-registry server/ }
 end
