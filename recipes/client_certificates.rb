@@ -15,7 +15,7 @@ server_ip = node['docker_registry2']['server_ip']
 execute "Change /etc/hosts: #{server_ip} #{domain_name}" do
   command "echo #{server_ip} #{domain_name} >> /etc/hosts"
   action :run
-  not_if "grep '^#{server_ip} #{domain_name}' /etc/hosts"
+  not_if "grep #{domain_name} /etc/hosts"
 end
 
 %w(
